@@ -34,12 +34,13 @@ def plot_picard_convergence_pattern(x_p, fp_p, max_labels=6):
     
     ax.set_xlabel('$x$')
     ax.set_ylabel('$f_p(x)$')
+    plt.title('Picard')
     plt.show()
     
     
 def plot_newton_convergence_pattern(fn, dx, x_0, tol, max_labels0=1, max_labels1=2, inset=True, ixmin=3.0, ixmax=3.2, iymin=-0.1, iymax=0.1, zoom=8, loc0=1, loc1=3, loc2=2):
     fig, ax = plt.subplots()
-    
+    plt.title('Newton')
     x_n = [x_0]
     y_n = [fn(x_0)]
     
@@ -116,10 +117,13 @@ def plot_root_bracketing_pattern(f, a, b, dx, xbounds=(-0.1,1.4), ybounds=(-5,6)
     ax.set_ylabel('$f(x)$')
     ax.set_xlim(xbounds[0],xbounds[1])
     ax.set_ylim(ybounds[0],ybounds[1])
+    plt.title('Bracketing')
     plt.show()
+    
     
 def plot_bisection_pattern(f, x1, x2, tol=1.0e-5, inset=True, ixmin=0.715, ixmax=0.755, iymin=-0.25, iymax=0.2, zoom=3, loc0=3, loc1=3, loc2=2):
     fig, ax = plt.subplots()
+    plt.title('Bisection')
     x = np.linspace(x1, x2, 100)
     y = f(x)
     ax.plot(x, y, color='r')
