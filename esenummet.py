@@ -38,7 +38,7 @@ def plot_picard_convergence_pattern(x_p, fp_p, max_labels=6):
     plt.show()
     
     
-def plot_newton_convergence_pattern(fn, dx, x_0, tol, max_labels0=1, max_labels1=2, inset=True, ixmin=3.0, ixmax=3.2, iymin=-0.1, iymax=0.1, zoom=8, loc0=1, loc1=3, loc2=2):
+def plot_newton_convergence_pattern(fn, dx, x_0, tol, max_labels0=1, max_labels1=2, inset=True, ixmin=3.0, ixmax=3.2, iymin=-0.1, iymax=0.1, zoom=8, loc0=1, loc1=3, loc2=2, maxiter=100):
     fig, ax = plt.subplots()
     plt.title('Newton')
     x_n = [x_0]
@@ -48,6 +48,7 @@ def plot_newton_convergence_pattern(fn, dx, x_0, tol, max_labels0=1, max_labels1
     fy_n = [fn(x_0)]
     
     # solving
+    i = 0
     while 1:
         dfdx = (fn(x_n[-1]+dx) - fn(x_n[-1])) / dx
         a = fn(x_n[-1])-(dfdx*x_n[-1])
@@ -60,6 +61,9 @@ def plot_newton_convergence_pattern(fn, dx, x_0, tol, max_labels0=1, max_labels1
             break
         x_n.append(x_zero)
         y_n.append(fn(x_zero))
+        i = i+1
+        if i >= maxiter:
+            break
         
     # the iteration results
     ax.scatter(fx_n, fy_n, marker='x', color='blue', s=30)
