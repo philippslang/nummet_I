@@ -111,7 +111,7 @@ def plot_root_bracketing_pattern(f, a, b, dx, xbounds=(-0.1,1.4), ybounds=(-5,6)
     ax.plot(x, y, marker='x', color='r')
     switched = False
     for i, xt in enumerate(x):
-        ft = str('$f=$' + '${:4.2f}$'.format(y[i]))
+        ft = str('$f_' + str(i) + '=$' + '${:4.2f}$'.format(y[i]))
         ax.text(xt, y[i], ft)
         if i > 0:
             if not switched and np.sign(y[i]) != np.sign(y[i-1]):
