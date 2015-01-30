@@ -83,7 +83,12 @@ def plot_newton_convergence_pattern(fn, dx, x_0, tol, max_labels0=1, max_labels1
     for i in range(1, min(max_labels0+1, len(fx_n))):
         label = ''.join(['$x_', str(i), '$'])
         ax.text(fx_n[i]+dxt, fy_n[i]+dyt, label)
-        
+
+    # zero line
+    xlim = ax.get_xlim()
+    ax.plot([xlim[0],xlim[1]],[0.,0.],color='gray',ls='-.',alpha=0.75)
+    ax.set_xlim(xlim)
+
     # zoomed inset
     if inset:
         axins = zoomed_inset_axes(ax, zoom, loc=loc0)
@@ -93,6 +98,8 @@ def plot_newton_convergence_pattern(fn, dx, x_0, tol, max_labels0=1, max_labels1
         for i in range(max_labels0+1, min(max_labels0+1+max_labels1,len(fx_n))):
             label = ''.join(['$x_', str(i), '$'])
             axins.text(fx_n[i]+dxt/8., fy_n[i]+dyt/8., label)
+        
+        axins.plot([ixmin,ixmax],[0.,0.],color='gray',ls='-.',alpha=0.75)
         axins.set_xlim(ixmin, ixmax)
         axins.set_ylim(iymin, iymax)
         axins.get_xaxis().set_visible(False)
@@ -119,6 +126,7 @@ def plot_root_bracketing_pattern(f, a, b, dx, xbounds=(-0.1,1.4), ybounds=(-5,6)
                 ax.plot([x[i],x[i-1]], [y[i],y[i-1]], color='b')
     ax.set_xlabel('$x$')
     ax.set_ylabel('$f(x)$')
+    ax.plot([xbounds[0],xbounds[1]],[0.,0.],color='gray',ls='-.',alpha=0.75)
     ax.set_xlim(xbounds[0],xbounds[1])
     ax.set_ylim(ybounds[0],ybounds[1])
     plt.title('Bracketing')
@@ -147,6 +155,11 @@ def plot_bisection_pattern(f, x1, x2, tol=1.0e-5, inset=True, ixmin=0.715, ixmax
         else:
             x2 = x3
             f2 = f3
+
+    # zero line
+    xlim = ax.get_xlim()
+    ax.plot([xlim[0],xlim[1]],[0.,0.],color='gray',ls='-.',alpha=0.75)
+    ax.set_xlim(xlim)
             
     # zoomed inset
     if inset:
@@ -169,7 +182,7 @@ def plot_bisection_pattern(f, x1, x2, tol=1.0e-5, inset=True, ixmin=0.715, ixmax
             else:
                 x2 = x3
                 f2 = f3
-
+        axins.plot([ixmin,ixmax],[0.,0.],color='gray',ls='-.',alpha=0.75)
         axins.set_xlim(ixmin, ixmax)
         axins.set_ylim(iymin, iymax)
         axins.get_xaxis().set_visible(False)
