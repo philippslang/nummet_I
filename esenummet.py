@@ -1,7 +1,15 @@
 import numpy as np
+import matplotlib
 import matplotlib.pyplot as plt
+import scipy.optimize as scop
+import scipy.interpolate as scip
 from mpl_toolkits.axes_grid1.inset_locator import zoomed_inset_axes
 from mpl_toolkits.axes_grid1.inset_locator import mark_inset
+
+
+# ================
+# NONLINER SESSION
+# ================
 
 
 def plot_picard_convergence_pattern(x_p, fp_p, max_labels=6):
@@ -192,4 +200,38 @@ def plot_bisection_pattern(f, x1, x2, tol=1.0e-5, inset=True, ixmin=0.715, ixmax
     xf = (x1 + x2)/2.0
     ax.set_xlabel('$x$')
     ax.set_ylabel('$f(x)$')
+    plt.show()
+
+
+# =============================
+# INTERPOLATION & CURVE FITTING 
+# =============================
+
+
+def interpolation_vs_curve_fitting():
+    matplotlib.rcParams['figure.figsize'] = 16,6
+
+    plt.subplot(1, 2, 1)
+    x = np.linspace(0, 10, 10)
+    y = np.cos(-x**2/8.0)
+    f = scip.interp1d(x, y)
+    f2 = scip.interp1d(x, y, kind='cubic')
+    xnew = np.linspace(0, 10, 40)
+    plt.scatter(x,y, marker='x', s=45)
+    plt.plot(x,y,'-', color='green')
+    plt.plot(xnew, f2(xnew),'--', color='red')
+    plt.title('Interpolation')
+
+    plt.subplot(1, 2, 2)
+    def foo(x, a, b, c):
+        return a*np.exp(-b*x) + c
+    t = np.linspace(0,4,50)
+    T = foo(t, 5.0, 1.5, 0.5)
+    d = T + 0.25*np.random.normal(size=len(T))
+    fp, fc = scop.curve_fit(foo, t, d)
+    plt.scatter(t, d, marker='x', s=30)
+    plt.plot(t, foo(t, fp[0], fp[1], fp[2]), color='green')
+    plt.xlim(0,4.5)
+    plt.title('Curve Fitting')
+
     plt.show()
