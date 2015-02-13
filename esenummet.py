@@ -235,3 +235,20 @@ def interpolation_vs_curve_fitting():
     plt.title('Curve Fitting')
 
     plt.show()
+
+
+def least_squares():
+    def foo(x):
+        return x**1.5
+    x_sample = np.linspace(0,5,7)
+    y_sample = foo(x_sample) + 2.*np.random.normal(size=len(x_sample))
+    x_fit = np.linspace(0,5,100)
+    y_fit = foo(x_fit)
+    for i, x in enumerate(x_sample):
+        plt.plot([x,x], [foo(x), y_sample[i]], color='red')
+    plt.plot(x_sample, y_sample, 'x', mew=2, ms=5)
+    plt.plot(x_fit,y_fit)
+    plt.xlim(-0.5, 5.5)
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.show()
