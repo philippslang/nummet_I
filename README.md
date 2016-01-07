@@ -11,6 +11,6 @@ An introduction to scientific computing in Python using NumPy and SciPy
 | [Nonlinear Equations](http://nbviewer.ipython.org/github/imprm/nummet_I/blob/master/NonLinearRoots.ipynb) | Roots of non-linear equations and numerical solution methods |
 | [Interpolation and Curve Fitting](http://nbviewer.ipython.org/github/imprm/nummet_I/blob/master/CurvefittingInterpolation.ipynb) | Fitting and interpolation given discrete data |
 | [Systems of Equations](http://nbviewer.ipython.org/github/imprm/nummet_I/blob/master/LinearSystems.ipynb) | Linear algebra and solutions to Ax = b |
-| [Integrations](http://nbviewer.ipython.org/github/imprm/nummet_I/blob/master/Quadrature.ipynb) | Numerical integration methods |
+| [Integration](http://nbviewer.ipython.org/github/imprm/nummet_I/blob/master/Quadrature.ipynb) | Numerical integration methods |
 | [Examples II](http://nbviewer.ipython.org/github/imprm/nummet_I/blob/master/Quadrature_Practical_1.ipynb) | Numerical integration examples |
 | [Examples III](http://nbviewer.ipython.org/github/imprm/nummet_I/blob/master/Quadrature_Practical_2.ipynb) | Numerical integration examples |
